@@ -1,0 +1,91 @@
+.home {
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(purple, $color);
+    @include flexCenter();
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow: hidden !important;
+    .banner {
+        color: #fff;
+        font-size: 4.5rem;
+        text-shadow: 0 .3rem .8rem rgba(#000000, 0.3);
+    }
+    .slogan {
+        color: #eee;
+        font-size: 2.5rem;
+        font-weight: 400;
+    }
+    button {
+        width: 18rem;
+        height: 4rem;
+        background-color: #fff;
+        color: #444;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        margin-top: 1rem;
+        font-size: 2rem;
+        font-weight: 400;
+        border-radius: 5px;
+        box-shadow: 0 .3rem .5rem rgba(#000000, 0.3);
+    }
+    button:hover {
+        letter-spacing: .1rem;
+    }
+    .wave {
+        width: 100%;
+        height: 11rem;
+        background-image: url(../images/wave.png);
+        background-size: 100rem 11rem;
+        background-repeat: repeat-x;
+        position: absolute;
+        bottom: -.5rem;
+        left: 0;
+        animation: waves 10s linear infinite;
+    }
+    .wave2 {
+        animation-direction: reverse;
+        opacity: .2;
+    }
+    .wave3 {
+        animation-duration: 4s;
+        opacity: .3;
+    }
+    .fa-cog {
+        position: absolute;
+        font-size: 25rem;
+        opacity: .15;
+        color: $fontColor;
+        animation: rotate 8s linear infinite;
+    }
+    .nut1 {
+        top: 10%;
+        left: -12rem;
+    }
+    .nut2 {
+        bottom: 23%;
+        right: -15rem;
+        animation-duration: reverse;
+    }
+}
+
+// @keyframes
+@keyframes waves {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: 100rem;
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}

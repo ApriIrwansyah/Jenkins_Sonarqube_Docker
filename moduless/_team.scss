@@ -1,0 +1,96 @@
+.team {
+    min-height: 100vh;
+    width: 100vw;
+    text-align: center;
+    background-color: #222;
+    @include heading();
+    .heading {
+        color: #fff;
+    }
+    .heading::before,
+    .heading::after {
+        border-color: #fff;
+    }
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        .card {
+            width: 30rem;
+            height: 40rem;
+            background-color: #fff;
+            /*  background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; */
+            text-align: center;
+            margin: 7rem 2rem;
+            position: relative;
+            overflow: hidden;
+            -webkit-box-reflect: below .2rem linear-gradient(transparent 70%, #0004);
+            .image {
+                /*    width: 100%;
+                height: 100%; */
+                margin: 1rem 0;
+                padding-top: 4rem;
+                img {
+                    width: 17rem;
+                    height: 17rem;
+                    border-radius: 50%;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    border: .5rem solid #fff;
+                    box-shadow: 0 0 .5rem rgba(#000000, 0.3);
+                    object-fit: cover;
+                }
+            }
+            .info {
+                h3 {
+                    font-size: 2rem;
+                    color: #333;
+                }
+                span {
+                    font-size: 1.8rem;
+                    color: $color;
+                }
+                .icons {
+                    a {
+                        margin-top: 4rem;
+                        padding: 0 1rem;
+                        font-size: 2rem;
+                        color: #333;
+                    }
+                    a:hover {
+                        color: $color;
+                    }
+                }
+            }
+        }
+        .card::before,
+        .card::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            width: 15rem;
+            height: 15rem;
+            z-index: -1;
+        }
+        .card::before {
+            background-color: $color;
+            top: -3rem;
+            right: -4rem;
+        }
+        .card::after {
+            background-color: #ccc;
+            bottom: -3rem;
+            left: -4rem;
+        }
+    }
+}

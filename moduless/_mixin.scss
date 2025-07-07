@@ -1,0 +1,64 @@
+@mixin flexCenter() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flexAround() {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+@mixin heading() {
+    // All to section!
+    .heading {
+        margin: 2rem;
+        padding-top: 6rem;
+        display: inline-block;
+        font-size: 3.5rem;
+        color: $color;
+        position: relative;
+        letter-spacing: .2rem;
+    }
+    .heading::before,
+    .heading::after {
+        content: '';
+        height: 2.5rem;
+        width: 2.5rem;
+        // menggunakan nested pada property
+        border: {
+            top: .4rem solid $color;
+            left: .4rem solid $color;
+        }
+        position: absolute;
+    }
+    .heading::before {
+        top: 5.8rem;
+        left: -2rem;
+    }
+    .heading::after {
+        bottom: -.5rem;
+        right: -2rem;
+        transform: rotate(180deg);
+    }
+}
+
+@mixin btn() {
+    .btn {
+        width: 15rem;
+        height: 3.5rem;
+        border-radius: 5rem;
+        background-color: $color;
+        color: $fontColor;
+        outline: none;
+        border: none;
+        font-size: 1.7rem;
+        cursor: pointer;
+        box-shadow: 0 .2rem .5rem rgba(#000000, 0.3);
+    }
+    .btn:hover {
+        letter-spacing: .1rem;
+        opacity: .8;
+    }
+}

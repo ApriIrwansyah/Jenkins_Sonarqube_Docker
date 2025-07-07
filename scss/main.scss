@@ -1,0 +1,31 @@
+// Variable
+@import '../moduless/variable';
+// Variable
+// Membuat @mixin(), ini merupakan kumpulan style yang dapat digunakan ber ulang-ulang dan di panggil dengan @include
+@import '../moduless/mixin';
+// Membuat @mixin()
+@import '../moduless/html';
+// All to section!
+// Header Section Starts
+@import '../moduless/header';
+// Header Section ends
+// Home Section Start
+@import '../moduless/home';
+//Home Section Ends
+// About Section Start
+@import '../moduless/about';
+// About Section Ends
+// team section start 
+@import '../moduless/team';
+//team ends
+// contact start
+@import '../moduless/contact';
+//contact send
+// faq start
+@import '../moduless/faq';
+// faq ends
+// footer start
+@import '../moduless/footer';
+// footer ends
+// Media Query / Breakpoint Responsive 
+@import '../moduless/mediaQuery';

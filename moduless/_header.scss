@@ -1,0 +1,40 @@
+.header {
+    @include flexAround();
+    width: 100%;
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    .logo {
+        font-size: 2.5rem;
+        color: $fontColor;
+        i {
+            padding: 0 .8rem;
+        }
+    }
+    .fa-bars {
+        color: $fontColor;
+        cursor: pointer;
+        font-size: 3rem;
+        display: none;
+    }
+    .navbar {
+        ul {
+            width: 30%;
+            @include flexAround();
+            list-style: none;
+            li {
+                font-weight: 400;
+                margin: 0 1.5rem;
+                a {
+                    font-size: 1.7rem;
+                    color: $fontColor;
+                }
+                a:hover {
+                    color: #ccc;
+                }
+            }
+        }
+    }
+}
