@@ -4,11 +4,11 @@ pipeline {
 
     // Mendefinisikan alat (tools) yang akan digunakan.
     // Pastikan 'NodeJS' dan 'SonarQubeScanner' sudah dikonfigurasi di Manage Jenkins > Global Tool Configuration.
-    tools {
-        // Uncomment baris di bawah ini jika kamu sudah menginstal Node.js di Jenkins
-        // dan nama instalasinya adalah 'NodeJS' di Global Tool Configuration.
-        // nodejs 'NodeJS' 
-    }
+    // tools {
+    //     // Uncomment baris di bawah ini jika kamu sudah menginstal Node.js di Jenkins
+    //     // dan nama instalasinya adalah 'NodeJS' di Global Tool Configuration.
+    //     // nodejs 'NodeJS' 
+    // }
 
     // Variabel lingkungan yang akan digunakan di seluruh pipeline.
     environment {
