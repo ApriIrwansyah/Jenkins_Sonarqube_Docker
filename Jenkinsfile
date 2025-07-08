@@ -12,22 +12,9 @@ pipeline {
 
     // Variabel lingkungan yang akan digunakan di seluruh pipeline.
     environment {
-        // Mengambil token SonarCloud dari Jenkins Credentials.
-        // Pastikan 'SONARCLOUD_TOKEN' adalah ID dari Secret Text credential yang sudah kamu buat di Jenkins.
-        // Saya asumsikan ID credential untuk token SonarCloud adalah 'SONARCLOUD_TOKEN'.
-        // Jika kamu menggunakan 'sonarqube_token_localhost', ganti 'SONARCLOUD_TOKEN' di sini.
         // SONAR_TOKEN = credentials('SONARCLOUD_TOKEN') 
-        
-        // Konfigurasi SonarCloud. Ganti dengan nilai yang sesuai untuk proyek dan organisasimu.
-        SONAR_PROJECT_KEY = 'ApriIrwansyah_Jenkins_Sonarqube_Docker' //Jenkins_Sonarqube_Docker
+        SONAR_PROJECT_KEY = 'Jenkins_Sonarqube_Docker' //ApriIrwansyah_Jenkins_Sonarqube_Docker
         SONAR_ORGANIZATION_KEY = 'ApriIrwansyah' 
-        
-        // Menggunakan URL SonarCloud karena kamu menyebutkan 'ApriIrwansyah' sebagai organisasi.
-        // Jika kamu benar-benar menggunakan SonarQube lokal di port 9000, ganti kembali ke 'http://localhost:9000'.
-        // SONAR_HOST_URL = 'http://localhost:9000' 
-        
-        // Mengambil path ke SonarQube Scanner yang sudah dikonfigurasi di Jenkins Global Tool Configuration.
-        // Pastikan nama 'SonarQubeScanner' sesuai dengan nama yang kamu berikan di konfigurasi Jenkins.
         SONAR_SCANNER_HOME = tool 'SonarQubeScanner'
     }
 
@@ -35,52 +22,36 @@ pipeline {
     stages {
         stage('Checkout Github') {
             steps {
-                // Melakukan clone repositori Git dari GitHub.
-                // 'jenkinsSonarqube_git_cred' adalah ID dari credential Git (misal: Username with password)
-                // yang kamu gunakan di Jenkins untuk mengakses repositori ini.
-                // Jika repositori publik, `credentialsId` bisa dihilangkan.
                 git branch: 'main', credentialsId: 'jenkinsSonarqube_git_cred', url: 'https://github.com/ApriIrwansyah/Jenkins_Sonarqube_Docker.git'
                 echo "Kode berhasil di-checkout dari Git."
             }
         }
 
-        stage('Install Node Dependencies') {
-            steps {
-                // Menginstal dependensi Node.js.
-                // Pastikan Node.js tool sudah terinstal dan terkonfigurasi di Jenkins.
-                // Jika kamu mengaktifkan 'nodejs' di bagian 'tools' di atas,
-                // maka 'sh 'npm install'' akan menggunakan Node.js yang dikonfigurasi.
-                sh 'npm install'
-            }
-        }
+        // stage('Install Node Dependencies') {
+        //     steps {
+        //         sh 'npm install'
+        //     }
+        // }
 
-        stage('Run Tests') {
-            steps {
-                // Menjalankan tes proyek Node.js.
-                // Pastikan ada script 'test' yang didefinisikan di package.json proyekmu.
-                sh 'npm test'
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         sh 'npm test'
+        //     }
+        // }
 
         stage('SonarCloud Analysis') {
             steps {
-                // Menggunakan `withSonarQubeEnv` untuk menyiapkan lingkungan untuk SonarScanner.
-                // 'SonarCloud' harus sesuai dengan nama konfigurasi SonarQube Server di Jenkins
-                // (Manage Jenkins -> Configure System -> SonarQube servers).
-                // Jika kamu menggunakan SonarQube lokal, ganti 'SonarCloud' dengan nama konfigurasi server lokalmu.
 		withCredentials([string(credentialsId: 'sonarqube_token_localhost', variable: 'SONAR_TOKEN')]) {
 		withSonarQubeEnv('SonarQube') {
-                    // Perintah untuk menjalankan SonarScanner CLI.
-                    // Menggunakan variabel lingkungan yang sudah didefinisikan.
-                    // Menggunakan -Dsonar.token= untuk token autentikasi.
-			sh """
-                  		${SONAR_SCANNER_HOME}/bin/sonar-scanner \
-                  		-Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                    		-Dsonar.sources=. \
-                   		-Dsonar.host.url=http://localhost:9000 \
-                    		-Dsonar.login=${SONAR_TOKEN}
-                                echo "Analisis SonarCloud telah dimulai."
-                    				"""
+		sh """
+                  	${SONAR_SCANNER_HOME}/bin/sonar-scanner \
+                  	-Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+		   	-Dsonar.organization=${SONAR_ORGANIZATION_KEY} \
+                    	-Dsonar.sources=. \
+                   	-Dsonar.host.url=http://localhost:9000 \
+                    	-Dsonar.login=${SONAR_TOKEN}
+                        echo "Analisis SonarCloud telah dimulai."
+                """
 		}
         
 		}
