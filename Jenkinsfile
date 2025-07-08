@@ -37,7 +37,7 @@ pipeline {
                 // Menggunakan `withCredentials` untuk meneruskan token secara aman.
                 // 'sonarqube_token_localhost' adalah ID dari Secret Text credential kamu.
                 // Variabel 'SONAR_TOKEN' akan tersedia di dalam blok ini.
-                withCredentials([string(credentialsId: 'sonarqube_token', variable: 'SONAR_TOKEN')]) {
+                withCredentials([string(credentialsId: 'Jenkins_Sonarqube_Docker_Token2', variable: 'SONAR_TOKEN')]) {
                     // Menggunakan `withSonarQubeEnv` untuk menyiapkan lingkungan untuk SonarScanner.
                     // 'SonarQube' harus sesuai dengan nama konfigurasi SonarQube Server di Jenkins
                     // (Manage Jenkins -> Configure System -> SonarQube servers).
