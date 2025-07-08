@@ -68,8 +68,8 @@ pipeline {
                 // 'SonarCloud' harus sesuai dengan nama konfigurasi SonarQube Server di Jenkins
                 // (Manage Jenkins -> Configure System -> SonarQube servers).
                 // Jika kamu menggunakan SonarQube lokal, ganti 'SonarCloud' dengan nama konfigurasi server lokalmu.
-		withSonarQubeEnv([string(credentialsId: 'sonarqube_token_localhost', variable: 'SONAR_TOKEN')]) {
-                // withSonarQubeEnv('SonarCloud') { 
+		withCredentials([string(credentialsId: 'sonarqube_token_localhost', variable: 'SONAR_TOKEN')]) {
+		withSonarQubeEnv('SonarQube') {
                     // Perintah untuk menjalankan SonarScanner CLI.
                     // Menggunakan variabel lingkungan yang sudah didefinisikan.
                     // Menggunakan -Dsonar.token= untuk token autentikasi.
@@ -81,8 +81,9 @@ pipeline {
                     		-Dsonar.login=${SONAR_TOKEN}
                                 echo "Analisis SonarCloud telah dimulai."
                     				"""
-			
-                }
+		}
+        
+		}
             }
         }
 
