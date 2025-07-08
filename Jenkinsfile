@@ -9,7 +9,7 @@ pipeline {
         // Organization Key di SonarCloud
         SONAR_ORGANIZATION_KEY = 'ApriIrwansyah' 
         // URL host untuk SonarCloud
-        SONAR_HOST_URL = 'http://localhost:9000' // 'https://sonarcloud.io' 
+        SONAR_HOST_URL = 'https://sonarcloud.io' // 'http://localhost:9000'
         // Mengambil path ke SonarQube Scanner yang sudah dikonfigurasi di Jenkins Global Tool Configuration.
         // Pastikan nama 'SonarQubeScanner' sesuai dengan nama yang kamu berikan di konfigurasi Jenkins.
         SONAR_SCANNER_HOME = tool 'SonarQubeScanner'
@@ -37,7 +37,7 @@ pipeline {
                 // Menggunakan `withCredentials` untuk meneruskan token secara aman.
                 // 'sonarqube_token_localhost' adalah ID dari Secret Text credential kamu.
                 // Variabel 'SONAR_TOKEN' akan tersedia di dalam blok ini.
-                withCredentials([string(credentialsId: 'sonarqube_token_localhost', variable: 'SONAR_TOKEN')]) {
+                withCredentials([string(credentialsId: 'sonarqube_token', variable: 'SONAR_TOKEN')]) {
                     // Menggunakan `withSonarQubeEnv` untuk menyiapkan lingkungan untuk SonarScanner.
                     // 'SonarQube' harus sesuai dengan nama konfigurasi SonarQube Server di Jenkins
                     // (Manage Jenkins -> Configure System -> SonarQube servers).
