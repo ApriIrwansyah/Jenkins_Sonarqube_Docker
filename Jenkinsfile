@@ -7,7 +7,7 @@ pipeline {
         // Project Key yang benar, sesuai dengan nama repositori di GitHub dan SonarCloud
         SONAR_PROJECT_KEY = 'ApriIrwansyah_Jenkins_Sonarqube_Docker' // Jenkins_Sonarqube_Docker
         // Organization Key di SonarCloud
-        SONAR_ORGANIZATION_KEY = 'ApriIrwansyah' 
+        // SONAR_ORGANIZATION_KEY = 'ApriIrwansyah' 
         // URL host untuk SonarCloud
         SONAR_HOST_URL = 'https://sonarcloud.io' // 'http://localhost:9000'
         // Mengambil path ke SonarQube Scanner yang sudah dikonfigurasi di Jenkins Global Tool Configuration.
@@ -51,7 +51,7 @@ pipeline {
                         bat """
                             "%SONAR_SCANNER_HOME%\\bin\\sonar-scanner.bat" ^
                             -Dsonar.projectKey=${SONAR_PROJECT_KEY} ^
-                            -Dsonar.organization=${SONAR_ORGANIZATION_KEY} ^
+                            // -Dsonar.organization=${SONAR_ORGANIZATION_KEY} ^
                             -Dsonar.host.url=${SONAR_HOST_URL} ^
                             -Dsonar.sources=. ^
                             -Dsonar.token=%SONAR_TOKEN%
